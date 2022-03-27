@@ -3,8 +3,6 @@
 
 from time import sleep as esperar
 import os
-import wget
-
 
 def limpar():
     if os.name == 'nt':
@@ -70,8 +68,8 @@ def vless():
             return vless()
 
         uuid = vless_link.split('//')[1].split('@')[0]
-        porta = vless_link.split(':')[2].split('?')[0]
-        caminho = vless_link.split('path=')[1].split('#')[0]
+        porta = vless_link.split(':')[2].split('?')[0].split('/')[0]
+        caminho = vless_link.split('path=')[1].split('#')[0].split('&security')[0]
         server = vless_link.split('@')[1].split(':')[0]
 
 
