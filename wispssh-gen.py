@@ -112,7 +112,7 @@ def menu():
     status = filecmp.cmp('atualizar.py', 'wispssh-gen.py')
     os.remove('atualizar.py')
     if status == True:
-        status = ('Atualizado ✔')
+        status = ('Atualizado ✅')
     elif status == False:
         status = ('Desatualizado ❌')
     start()
