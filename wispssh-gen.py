@@ -3,6 +3,8 @@
 
 from time import sleep as esperar
 import os
+import filecmp
+import requests
 
 def limpar():
     if os.name == 'nt':
@@ -29,8 +31,9 @@ logo = logo.texto
 
 def start():
     limpar()
-    print(logo)
-    print()
+    print(roxo+logo)
+    print(resetar)
+    
 
 
 limpar()
@@ -95,15 +98,32 @@ Link Gerado
         esperar(3)
         return menu()
 
+def atualizar():
+    url = 'https://raw.githubusercontent.com/WispSSH/WispSSH-V2RAY-GEN/main/wispssh-gen.py'
+    r = requests.get(url, allow_redirects=True).content
+    open('wispssh-gen.py', 'wb').write(r)
+
 def menu():
     limpar()
-    print(roxo+logo)
-    print("""
+    url = 'https://raw.githubusercontent.com/WispSSH/WispSSH-V2RAY-GEN/main/wispssh-gen.py'
+    r = requests.get(url, allow_redirects=True).content
+    open('atualizar.py', 'wb').write(r)
+    status = filecmp.cmp('atualizar.py', 'wispssh-gen.py')
+    os.remove('atualizar.py')
+    if status == True:
+        status = ('Atualizado ✔')
+    elif status == False:
+        status = ('Desatualizado ❌')
+    start()
+    
+    print(f"""
 Qual modo deseja gerar o link?
 
+Status : {status}
 1 - Vless
 2 - Vmess
 3 - Trojan
+4 - Atualizar
     """)
     menu_escolha = input('> ')
     if menu_escolha == "1":
@@ -112,7 +132,8 @@ Qual modo deseja gerar o link?
         print('Ainda não está disponível')
     elif menu_escolha == "3":
         print('Ainda não está disponível')
-
+    elif menu_escolha == "4":
+        atualizar()
     else:
         print('Opção Inexistente')
         return menu()
