@@ -15,6 +15,7 @@ def limpar():
 roxo = "\033[1;35m"
 roxo_claro = "\033[1;95m"
 resetar = "\033[0;0m"
+branco = "\033[0;37m"
 
 def logo():
     logo.texto = """ __          ___            _____ ______ _   _ 
@@ -32,7 +33,7 @@ logo = logo.texto
 def start():
     limpar()
     print(roxo+logo)
-    print(resetar)
+    print(branco)
     
 
 
