@@ -94,7 +94,7 @@ Link Gerado
 
 {link}
         """)
-    except KeyboardInterrupt:
+    except (KeyboardInterrupt):
         print('Fechando script...')
         esperar(2)
         exit()
